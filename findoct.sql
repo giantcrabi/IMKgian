@@ -36,46 +36,13 @@ CREATE TABLE `dokter` (
   `Email` varchar(100) NOT NULL,
   `Nama` varchar(50) NOT NULL,
   `Foto` varchar(100) NOT NULL,
+  `Gelar` varchar(20) NOT NULL,
   PRIMARY KEY (`Email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `dokter` */
 
-insert  into `dokter`(`Email`,`Nama`,`Foto`) values ('giantcrabi@gmail.com','Gian','profileblank.png');
-
-/*Table structure for table `dokter_gelar` */
-
-DROP TABLE IF EXISTS `dokter_gelar`;
-
-CREATE TABLE `dokter_gelar` (
-  `Email` varchar(100) NOT NULL,
-  `Gelar` varchar(15) NOT NULL,
-  PRIMARY KEY (`Email`,`Gelar`),
-  KEY `dokter_gelar_fk2` (`Gelar`),
-  CONSTRAINT `dokter_gelar_fk1` FOREIGN KEY (`Email`) REFERENCES `dokter` (`Email`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `dokter_gelar_fk2` FOREIGN KEY (`Gelar`) REFERENCES `gelar` (`Gelar`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `dokter_gelar` */
-
-insert  into `dokter_gelar`(`Email`,`Gelar`) values ('giantcrabi@gmail.com','Sp.THT-KL');
-
-/*Table structure for table `dokter_penyakit` */
-
-DROP TABLE IF EXISTS `dokter_penyakit`;
-
-CREATE TABLE `dokter_penyakit` (
-  `Email` varchar(100) NOT NULL,
-  `NamaPenyakit` varchar(50) NOT NULL,
-  PRIMARY KEY (`Email`,`NamaPenyakit`),
-  KEY `dokter_penyakit_fk2` (`NamaPenyakit`),
-  CONSTRAINT `dokter_penyakit_fk1` FOREIGN KEY (`Email`) REFERENCES `dokter` (`Email`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `dokter_penyakit_fk2` FOREIGN KEY (`NamaPenyakit`) REFERENCES `penyakit` (`NamaPenyakit`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `dokter_penyakit` */
-
-insert  into `dokter_penyakit`(`Email`,`NamaPenyakit`) values ('giantcrabi@gmail.com','Sinusitis');
+insert  into `dokter`(`Email`,`Nama`,`Foto`,`Gelar`) values ('dokterarya@gmail.com','Arya','arya.jpg','dr.Umum'),('dokterdewa@gmail.com','Dewa','dewa.jpg','Sp.Bedah'),('dokterdwi@gmail.com','Dwi','dwi.jpg','dr.Umum'),('dokterwawan@gmail.com','Wawan','wawan.jpg','Sp.Anak'),('giantcrabi@gmail.com','Gian','gian.jpg','Sp.THT-KL');
 
 /*Table structure for table `dokter_tpraktek` */
 
@@ -97,34 +64,7 @@ CREATE TABLE `dokter_tpraktek` (
 
 /*Data for the table `dokter_tpraktek` */
 
-insert  into `dokter_tpraktek`(`Email`,`IDTPraktek`,`Senin`,`Selasa`,`Rabu`,`Kamis`,`Jumat`) values ('giantcrabi@gmail.com',1,'15:00-17:00','13:00-15:00','15:00-17:00','13:00-15:00',NULL);
-
-/*Table structure for table `gelar` */
-
-DROP TABLE IF EXISTS `gelar`;
-
-CREATE TABLE `gelar` (
-  `Gelar` varchar(15) NOT NULL,
-  `NamaGelar` varchar(100) NOT NULL,
-  PRIMARY KEY (`Gelar`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `gelar` */
-
-insert  into `gelar`(`Gelar`,`NamaGelar`) values ('Sp.THT-KL','Spesialis Telinga Hidung Tenggorok-Bedah Kepala Leher');
-
-/*Table structure for table `penyakit` */
-
-DROP TABLE IF EXISTS `penyakit`;
-
-CREATE TABLE `penyakit` (
-  `NamaPenyakit` varchar(50) NOT NULL,
-  PRIMARY KEY (`NamaPenyakit`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `penyakit` */
-
-insert  into `penyakit`(`NamaPenyakit`) values ('Sinusitis');
+insert  into `dokter_tpraktek`(`Email`,`IDTPraktek`,`Senin`,`Selasa`,`Rabu`,`Kamis`,`Jumat`) values ('dokterdewa@gmail.com',6,'10:00 - 16:00','10:00 - 16:00','10:00 - 16:00','10:00 - 16:00','10:00 - 16:00'),('dokterdwi@gmail.com',3,'10:00 - 16:00','10:00 - 16:00','10:00 - 16:00','10:00 - 16:00','10:00 - 16:00'),('dokterwawan@gmail.com',5,'13:00 - 15:00','15:00 - 17:00','13:00 - 15:00','15:00 - 17:00','-'),('giantcrabi@gmail.com',1,'15:00 - 17:00','13:00 - 15:00','15:00 - 17:00','13:00 - 15:00','-');
 
 /*Table structure for table `tpraktek` */
 
@@ -137,13 +77,13 @@ CREATE TABLE `tpraktek` (
   `Alamat` varchar(100) NOT NULL,
   `Kota` varchar(50) NOT NULL,
   `Provinsi` varchar(50) NOT NULL,
-  `KodePos` varchar(10) NOT NULL,
+  `KodePos` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`IDTPraktek`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tpraktek` */
 
-insert  into `tpraktek`(`IDTPraktek`,`NamaTPraktek`,`Foto`,`Alamat`,`Kota`,`Provinsi`,`KodePos`) values (1,'Rumah Sakit Mitra Keluarga','noimg.jpg','Jl. Satelit Indah No. 2','Surabaya','Jawa Timur','60187');
+insert  into `tpraktek`(`IDTPraktek`,`NamaTPraktek`,`Foto`,`Alamat`,`Kota`,`Provinsi`,`KodePos`) values (1,'Siloam Hospital','siloam.jpg','Jl. Karimun Jawa No.3, Gubeng','Surabaya','Jawa Timur',NULL),(3,'Rumah Sakit Umum Haji Surabaya','rs-haji.jpg','Jl. Manyar Kertoadi No.11, Klampis Ngasem, Sukolilo','Surabaya','Jawa Timur',NULL),(5,'Rumah Sakit Premier Surabaya','RSU_Soetomo.jpg','Nginden Intan Barat Blok C1 No.54, Ngiden Jangkungan, Sukolilo','Surabaya','Jawa Timur',NULL),(6,'Rumah Sakit Husada Utama','RS-husada-utama.jpg','Jl. Dharmawangsa No.10, Airlangga, Gubeng','Surabaya','Jawa Timur',NULL),(7,'Rumah Sakit William Booth','william.jpg','Jl. Raya Diponegoro No.34, Darmo, Wonokromo','Surabaya','Jawa Timur',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -49,9 +49,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-
-$route['maps/(:any)/(:any)'] = 'maps/view/$1/$2';
-$route['maps/(:any)'] = 'maps/view/$1';
-$route['default_controller'] = 'nyoba';
+#$route['praktek/delete/(:any)'] = 'praktek/delete/$1';
+#$route['praktek/update_praktek/(:any)'] = 'praktek/update_praktek/$1';
+#$route['praktek/create'] = 'praktek/create';
+#$route['praktek/(:any)'] = 'praktek/view/$1';
+#$route['doctors/tempat_kerja/(:any)'] = 'doctors/tempat_kerja/$1';
+#$route['doctors/delete/(:any)'] = 'doctors/delete/$1';
+#$route['doctors/update_profile/(:any)'] = 'doctors/update_profile/$1';
+#$route['doctors/create'] = 'doctors/create';
+#$route['doctors/(:any)'] = 'doctors/view/$1';
+$route['doctors/(:any)'] = 'doctors/filter/$1';
+$route['maps/(:any)/(:any)/(:any)'] = 'maps/index/$1/$2/$3';
+$route['maps/(:any)'] = 'maps/index/$1';
+$route['default_controller'] = 'maps';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

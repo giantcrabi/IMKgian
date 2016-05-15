@@ -16,4 +16,13 @@ class Nyoba extends CI_Controller {
                 $this->load->view('nyoba/home');
                 $this->load->view('templates/footer');
         }
+
+        public function test(){
+                $data['title'] = 'Nyoba Bootstrap';
+
+                $this->load->view('templates/headmain', $data);
+                $this->load->view('templates/header');
+                $this->load->view('nyoba/carispesialis');
+                $this->load->view('templates/footer');
+        }
 }
